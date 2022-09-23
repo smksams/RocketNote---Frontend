@@ -3,7 +3,7 @@ import { Container, Form, Background } from './style';
 import { Link } from 'react-router-dom';
 import { FiLock, FiMail } from 'react-icons/fi';
 
-import { useAuth } from '../../hooks/Auth';
+import { useAuth } from '../../hooks/auth';
 
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';

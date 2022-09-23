@@ -7,7 +7,7 @@ import { Section } from '../../components/Section'
 import { Input } from '../../components/Input'
 import { ButtonText } from '../../components/ButtonText'
 
-import { useAuth } from '../../hooks/Auth'
+import { useAuth } from '../../hooks/auth'
 
 
 export function Home() {

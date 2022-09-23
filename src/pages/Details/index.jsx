@@ -6,7 +6,7 @@ import { Section } from '../../components/Section';
 import { Tag } from '../../components/Tag';
 import { ButtonText } from '../../components/ButtonText';
 
-import { useAuth } from '../../hooks/Auth'
+import { useAuth } from '../../hooks/auth'
 
 export function Details() {
 

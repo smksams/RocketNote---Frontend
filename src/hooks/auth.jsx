@@ -5,7 +5,6 @@ import { api } from '../services/api';
 export const AuthContext = createContext({useAuth});
 
 function AuthProvider({ children }) {
-  
   const [data, setData] = useState({});
 
   async function signIn({ email, password }) {
@@ -37,6 +36,35 @@ function AuthProvider({ children }) {
     };
   };
 
+  async function profileUpdate({ user, avatarFile }) {
+    try {
+
+      if(avatarFile) {
+        const fileUploadForm = new FormData()
+        fileUploadForm.append("avatar", avatarFile)
+
+        const response = await api.patch("/users/avatar", fileUploadForm)
+        user.avatar = response.data.avatar
+
+      }
+
+
+      await api.put('/users', user);
+      localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
+
+      setData({ user, token: data.token});
+      alert('Perfil atualizado');
+
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert('Não foi possivel fazer o atualizar os dados.');
+      };
+    };
+
+  };
+
   useEffect(() => {
     const user = localStorage.getItem('@rocketnotes:user');
     const token = localStorage.getItem('@rocketnotes:token');
@@ -52,7 +80,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, signOut, profileUpdate, user: data.user }}>
       { children }
     </AuthContext.Provider>
   );

@@ -9,7 +9,7 @@ import { Textarea } from '../../components/Textarea';
 import { NoteItem } from '../../components/NoteItem';
 import { ButtonText } from '../../components/ButtonText';
 
-import { useAuth } from '../../hooks/Auth';
+import { useAuth } from '../../hooks/auth';
 
 
 export function New() {

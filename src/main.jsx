@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { AuthProvider } from './hooks/Auth';
+import { AuthProvider } from './hooks/auth';
 
 import theme from './styles/theme';
 import { ThemeProvider } from 'styled-components';
