@@ -26,7 +26,7 @@ export function SignUp() {
       .post('/users', { name, email, password })
       .then(() => {
         alert('Usuario cadastrado com sucesso');
-        navigate('/');
+        navigate(-1);
       })
       .catch((error) => {
         if (error.response) {
@@ -69,9 +69,11 @@ export function SignUp() {
 
         <Button onClick={handleSingUp} title='Cadastrar' />
 
-        <Link to='/'>
-          <ButtonText isActive title='Voltar para o login' />
-        </Link>
+          <ButtonText 
+          onClick={() => navigate(-1)}
+          isActive 
+          title='Voltar para o login' 
+          />
       </Form>
     </Container>
   );

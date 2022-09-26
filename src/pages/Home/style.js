@@ -68,7 +68,3 @@ export const NewNote = styled(Link)`
     justify-content: center;
     gap: .8rem;
 `;
-
-export const ButtonLink = styled(Link)`
-    
-`;

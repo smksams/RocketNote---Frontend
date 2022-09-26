@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 import { api } from '../services/api';
 
-export const AuthContext = createContext({useAuth});
+export const AuthContext = createContext({ useAuth });
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({});
@@ -38,8 +38,7 @@ function AuthProvider({ children }) {
 
   async function profileUpdate({ user, avatarFile }) {
     try {
-
-      if(avatarFile) {
+      if (avatarFile) {
         const fileUploadForm = new FormData()
         fileUploadForm.append("avatar", avatarFile)
 
@@ -50,9 +49,15 @@ function AuthProvider({ children }) {
 
 
       await api.put('/users', user);
-      localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
 
-      setData({ user, token: data.token});
+      
+      let updatedUser = Object.assign({}, user)
+      delete updatedUser.password
+      delete updatedUser.old_password
+
+      localStorage.setItem('@rocketnotes:user', JSON.stringify(updatedUser));
+
+      setData({ user, token: data.token });
       alert('Perfil atualizado');
 
     } catch (error) {
@@ -81,7 +86,7 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{ signIn, signOut, profileUpdate, user: data.user }}>
-      { children }
+      {children}
     </AuthContext.Provider>
   );
 };
